@@ -1,8 +1,10 @@
 import React from "react";
+import Weblayout from "../layout/weblayout";
 
 function Facilities() {
     return(
         <>
+        <Weblayout>
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
                 <h1 class="display-2 text-white animated slideInDown mb-4">Facilities</h1>
@@ -77,7 +79,7 @@ function Facilities() {
                 </div>
             </div>
         </div>
-        
+    </Weblayout>
         </>
     )
 }

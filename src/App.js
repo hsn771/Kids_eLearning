@@ -1,14 +1,14 @@
 import React from "react";
-import{BrowserRouter, Route, Routes} from 'react-router';
+import{Route, Routes} from 'react-router';
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
 import Facilities from "./pages/Facilities";
 import Contact from "./pages/Contact";
-import "./assets/lib/animate/animate.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/style.css";
-import "./assets/importfile.css";
+// import "./assets/lib/animate/animate.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./assets/css/style.css";
+// import "./assets/importfile.css";
 
 function App() {
   return (

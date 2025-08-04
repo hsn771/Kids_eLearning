@@ -1,9 +1,11 @@
 import React from "react";
 import HeaderCarousel from "./com/HeaderCarousel";
+import Weblayout from "../layout/weblayout";
 
 function Home() {
     return(
         <>
+        <Weblayout>
         {/* <div className="container-xxl bg-white p-0"> */}
       
         {/* <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -546,6 +548,7 @@ function Home() {
         
        
   {/* </div> */}
+  </Weblayout>
         </>
     )
 }
