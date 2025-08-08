@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { Link,useLocation } from 'react-router'
+import { Link,useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function Header(){
+  const navigate=useNavigate();
+  const logout = ()=>{
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("userdata");
+    navigate('/login')
+  }
     return(
           <>
           <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -15,6 +22,7 @@ function Header(){
                   </li>
                   
                 </ul>
+                <button className="btn btn-link" onClick={logout}>Logout</button>
               </div>
             </nav>
           </>
