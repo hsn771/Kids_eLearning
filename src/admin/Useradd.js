@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Adminlayout from '../layout/adminlayout';
+import Adminlayout from '../layout/Adminlayout';
 import { useNavigate } from 'react-router-dom';
 
 function Useradd() {

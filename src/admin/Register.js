@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios';
+import axios from './component/axios'
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-    const nevigate = useNavigate();
+  const [inputs, setInputs] = useState([]);
+    const navigate = useNavigate();
     
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -12,24 +13,27 @@ function Register() {
             return false;
         }
 
-        let datas = {
-            name: e.target.name.value,
-            email: e.target.email.value,
-            contact_no: e.target.contact_no.value,
-            password: e.target.password.value
+      let datas={
+        name:e.target.name.value,
+        email:e.target.email.value,
+        contact_no:e.target.contact_no.value,
+        password:e.target.password.value
+      }
+      datas ={...inputs, ...datas} // marge two object
+
+       const formData = new FormData();
+            for (const property in datas) {
+              formData.append(property, datas[property])
         }
 
         try{
-            let url='http://localhost/potter-api/users_add.php';
+            let url='register.php';
 
-            let response = await axios({
-                method: 'post',
-                responsiveType: 'json',
-                url: url,
-                data: datas
-            });
-            if(response.data.error=0)
-                nevigate('login')
+     
+            
+           let response= await axios.post(url,formData);
+            if(response.data.success=1)
+                navigate('/login')
             else
                 alert(response.data.message)
         }

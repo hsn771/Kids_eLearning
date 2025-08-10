@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Adminlayout from '../layout/adminlayout';
+import axios from './component/axios';
+import Adminlayout from '../layout/Adminlayout';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function Users() {
   const [users,setUsers]=useState([]);
   const [show, setShow] = useState(false);
+  const [inputs, setInputs] = useState([]);
 
   const handleClose = () => {
     setShow(false)
@@ -26,37 +27,43 @@ function Users() {
     getDatas();
   }, []);
 
-  const getDatas=()=>{
-    axios.get(`http://localhost/potter-api/users.php`).then(function(response) {
-      setUsers(response.data);
-    });
-  }
-
-  const [inputs, setInputs] = useState([]);
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}));
+  const getDatas = async (e) => {
+    let res = await axios.get(`users/list.php`)
+    setUsers(res.data);
   }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+
+    let datas={
+        name:e.target.name.value,
+        contact_no:e.target.contact_no.value,
+        email:e.target.email.value,
+        password:e.target.password.value
+    }
+    datas ={...inputs, ...datas} // marge two object
+   
+    const formData = new FormData();
+    for (const property in datas) {
+      formData.append(property, datas[property])
+    }
+    
     try{
       let url='';
-      if(inputs.id!=''){
-        url='http://localhost/potter-api/users_update.php';
+      if(datas.id!=''){
+        url=`users/update.php`;
       }else{
-        url='http://localhost/potter-api/users_add.php';
+        url=`users/add.php`;
       }
-      let response= await axios({
-          method: 'post',
-          responsiveTYpe: 'json',
-          url: url,
-          data: inputs
-      });
-      getDatas();
-      handleClose()
+     
+      let response= await axios.post(url,formData);
+     
+      if(response.data.error == 1){
+        alert(response.data.message)
+      }else{
+        getDatas();
+        handleClose()
+      }
     } 
     catch(e){
       console.log(e);
@@ -68,10 +75,9 @@ function Users() {
     setShow(true);
   }
 
-  const deleteUser = (id) => {
-    axios.delete(`http://localhost/potter-api/users_delete.php?id=${id}`).then(function(response){
-      getDatas();
-    });
+  const deleteUser = async(id) => {
+    let res = await axios.get(`users/delete.php?id=${id}`);
+    getDatas();
   }
 
 
@@ -79,6 +85,7 @@ function Users() {
     <Adminlayout>
       <div className='container'>
         <h1>User</h1>
+        
         <Button variant="primary" onClick={handleShow}>
           Add New
         </Button>
@@ -117,19 +124,19 @@ function Users() {
           <Modal.Body>
               <div className='form-group'>
                   <label htmlFor='name'>Name</label>
-                  <input type='text' defaultValue={inputs.name} className='form-control' name="name" id='name' onChange={handleChange}/>
+                  <input type='text' defaultValue={inputs.name} className='form-control' name="name" id='name'/>
               </div>
               <div className='form-group'>
                   <label htmlFor='email'>Email</label>
-                  <input type='text' defaultValue={inputs.email} className='form-control' name="email" id='email' onChange={handleChange}/>
+                  <input type='text' defaultValue={inputs.email} className='form-control' name="email" id='email'/>
               </div>
               <div className='form-group'>
                   <label htmlFor='contact_no'>Contact</label>
-                  <input type='text' defaultValue={inputs.contact_no} className='form-control' name="contact_no" id='contact_no' onChange={handleChange}/>
+                  <input type='text' defaultValue={inputs.contact_no} className='form-control' name="contact_no" id='contact_no'/>
               </div>
               <div className='form-group'>
                   <label htmlFor='password'>Password</label>
-                  <input type='text' defaultValue={inputs.password} className='form-control' name='password' id='password' onChange={handleChange}/>
+                  <input type='text' defaultValue={inputs.password} className='form-control' name='password' id='password'/>
               </div>
 
           </Modal.Body>

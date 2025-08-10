@@ -41,12 +41,12 @@ function App() {
               <Dashboard /> 
            </Protected>
            } />
-          <Route path= {"/admin/user"} element={
+          <Route path= {"/admin/users"} element={
             <Protected  isSignedIn= {isSignedIn} >
               <Users /> 
            </Protected>
            } />
-          <Route path="/admin/add-user" element={<Useradd />} />
+          <Route path="/admin/Useradd" element={<Protected isSignedIn= {isSignedIn} > <Useradd /> </Protected>} />
     </Routes>
     </>
   );
