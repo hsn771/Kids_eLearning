@@ -22,7 +22,7 @@ const HeaderCarousel = () => {
       <Slider {...settings}>
         {/* Slide 1 */}
         <div className="position-relative">
-          <img className="img-fluid" src="assets/img/carousel-1.jpg" alt="" />
+          <img className="img-fluid" src="assets/img/carousel-1.jpg" width="100%" alt="" />
           <div
             className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
             style={{ background: 'rgba(0, 0, 0, 0.2)' }}
@@ -44,7 +44,7 @@ const HeaderCarousel = () => {
 
         {/* Slide 2 */}
         <div className="position-relative">
-          <img className="img-fluid" src="assets/img/carousel-2.jpg" alt="" />
+          <img className="img-fluid" src="assets/img/carousel-2.jpg" width="100%" alt="" />
           <div
             className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
             style={{ background: 'rgba(0, 0, 0, 0.2)' }}
