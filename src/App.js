@@ -10,8 +10,11 @@ import Login from './admin/Login';
 import Register from './admin/Register';
 import Dashboard from './admin/Dashboard';
 import Users from './admin/Users';
+
 import Useradd from './admin/Useradd';
 import Protected from './admin/protected';
+import Categories from "./admin/Categories";
+import Courses from "./admin/Courses";
 // import "./assets/lib/animate/animate.min.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "./assets/css/style.css";
@@ -44,6 +47,16 @@ function App() {
           <Route path= {"/admin/users"} element={
             <Protected  isSignedIn= {isSignedIn} >
               <Users /> 
+           </Protected>
+           } />
+           <Route path= {"/admin/categories"} element={
+            <Protected  isSignedIn= {isSignedIn} >
+              <Categories /> 
+           </Protected>
+           } />
+           <Route path= {"/admin/courses"} element={
+            <Protected  isSignedIn= {isSignedIn} >
+              <Courses /> 
            </Protected>
            } />
           <Route path="/admin/Useradd" element={<Protected isSignedIn= {isSignedIn} > <Useradd /> </Protected>} />

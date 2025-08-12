@@ -1,7 +1,19 @@
 import React from "react";
 import Weblayout from "../layout/weblayout";
+import axios from '../admin/component/axios';
 
 function Classes() {
+    const [courses,setCourses]=useState([]);
+   useEffect(() => {
+       getCourses();
+     }, []);
+   
+     const getCourses = async (e) => {
+       let res = await axios.get(`front_api/courses.php`)
+       setCourses(res.data);
+     }
+
+     const { addItem } = useCart();
     return(
         <>
         <Weblayout>
