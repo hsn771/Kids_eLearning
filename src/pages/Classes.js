@@ -51,7 +51,7 @@ function Classes() {
                                             <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
                                             <div className="ms-3">
                                                 <h6 className="text-primary mb-1">{d.name}</h6>
-                                                <small>Teacher</small>
+                                                <small>{d.post}</small>
                                             </div>
                                         </div>
                                         <span className="bg-primary text-white rounded-pill py-2 px-3" href="">{d.price}</span>
@@ -78,7 +78,7 @@ function Classes() {
                                     </div>
                                     <div className="row g-1">
                                         <button onClick={() => addItem(d)}>
-                                           <TiShoppingCart size={20} />
+                                           <TiShoppingCart size={20} /> Add to Cart
                                         </button>
                                     </div>
                                 </div>
