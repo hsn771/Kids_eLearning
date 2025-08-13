@@ -5,7 +5,7 @@ function Header() {
         <>
         <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
             <a href="index.html" className="navbar-brand">
-                <h1 className="m-0 text-primary"><i className="fa fa-book-reader me-3"></i>Kider</h1>
+                <h1 className="m-0 text-primary"><i className="fa fa-book-reader me-3"></i>Incentives Care</h1>
             </a>
             <button type="button" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span className="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@ function Header() {
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
                         <div className="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                            <Link to={"/facilities"} className="dropdown-item">School Facilities</Link>
+                            <Link to={"/facilities"} className="dropdown-item">Institutions Facilities</Link>
                             <a href="team.html" className="dropdown-item">Popular Teachers</a>
                             <a href="call-to-action.html" className="dropdown-item">Become A Teachers</a>
                             <a href="appointment.html" className="dropdown-item">Make Appointment</a>

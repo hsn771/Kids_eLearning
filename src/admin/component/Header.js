@@ -3,6 +3,7 @@ import { Link,useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 
+
 function Header(){
   const navigate=useNavigate();
   const logout = ()=>{
@@ -26,6 +27,9 @@ function Header(){
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to={"/admin/courses"}>Courses</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/admin/teacher"}>Teacher</Link>
                   </li>
                   
                 </ul>

@@ -18,6 +18,7 @@ import Useradd from './admin/Useradd';
 import Protected from './admin/protected';
 import Categories from "./admin/Categories";
 import Courses from "./admin/Courses";
+import Teacher from "./admin/Teacher";
 // import "./assets/lib/animate/animate.min.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "./assets/css/style.css";
@@ -61,6 +62,11 @@ function App() {
               <Route path= {"/admin/courses"} element={
                 <Protected  isSignedIn= {isSignedIn} >
                   <Courses /> 
+              </Protected>
+              } />
+              <Route path= {"/admin/teacher"} element={
+                <Protected  isSignedIn= {isSignedIn} >
+                  <Teacher /> 
               </Protected>
               } />
               <Route path="/admin/Useradd" element={<Protected isSignedIn= {isSignedIn} > <Useradd /> </Protected>} />

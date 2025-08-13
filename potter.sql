@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2025 at 07:01 PM
+-- Generation Time: Aug 13, 2025 at 06:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,6 +72,27 @@ INSERT INTO `courses` (`id`, `category_id`, `title`, `price`, `capacity`, `image
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `id` int(11) NOT NULL,
+  `tname` varchar(255) DEFAULT NULL,
+  `tpost` varchar(255) DEFAULT NULL,
+  `timage` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`id`, `tname`, `tpost`, `timage`) VALUES
+(2, 'Tohidur Rahman', 'It Consultant', ''),
+(3, 'Tohidur Rahman', 'It Consultant', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -93,7 +114,8 @@ INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, 
 (2, 'hasan', '0155678', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '98021754844428835939'),
 (3, 'Sidratul Mostafa Jesan', '0156', 'jesan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, NULL),
 (6, 'Tohidur Rahman', '125', 'tohid@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, NULL),
-(7, 'hasan', '015', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '18571755003936717924');
+(7, 'hasan', '015', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '18571755003936717924'),
+(8, 'Sidratul Mostafa Jesan', '015', 'jesan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '53511755094464115796');
 
 --
 -- Indexes for dumped tables
@@ -109,6 +131,12 @@ ALTER TABLE `categories`
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -134,10 +162,16 @@ ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
