@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 function Courses() {
   const [list,setList]=useState([]);// this page main data
   const [cat,setCat]=useState([]);// relational category data. It's used in select box of category
+  const [teach,setTeach]=useState([]);// relational category data. It's used in select box of category
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState([]);
   const [selectedfile, setSelectedFile] = useState([]);// image file
@@ -19,7 +20,7 @@ function Courses() {
             id:'',
             category_id:'',
             title:'',
-            name:'',
+            teacher_id:'',
             post:'',
             age:'',
             time:'',
@@ -29,6 +30,7 @@ function Courses() {
         
     setShow(true);
     getCategories();// this is call category to add option in category select box
+    getTeacher();// this is call category to add option in category select box
   }
 
   useEffect(() => {
@@ -44,6 +46,10 @@ function Courses() {
       let res = await axios.get(`categories/list.php`)
       setCat(res.data);
   }
+  const getTeacher = async (e) => {
+      let res = await axios.get(`teacher/list.php`)
+      setTeach(res.data);
+  }
 
   /* handel image/file */
   const handelFile = (e) => {
@@ -56,7 +62,7 @@ function Courses() {
     let datas={
         category_id:e.target.category_id.value,
         title:e.target.title.value,
-        name:e.target.name.value,
+        teacher_id:e.target.teacher_id.value,
         post:e.target.post.value,
         age:e.target.age.value,
         time:e.target.time.value,
@@ -99,6 +105,7 @@ function Courses() {
   /* function for edit */
   const showEdit=(e) => {
     getCategories();// this is call category to add option in category select box
+    getTeacher();// this is call category to add option in category select box
     setInputs(e);
     setShow(true);
   }
@@ -139,7 +146,7 @@ function Courses() {
               <td className="text-bold-500">{key+1}</td>
               <td>{d.cat_name}</td>
               <td>{d.title}</td>
-              <td>{d.name}</td>
+              <td>{d.tname}</td>
               <td>{d.post}</td>
               <td>{d.age}</td>
               <td>{d.time}</td>
@@ -178,9 +185,17 @@ function Courses() {
                   <input type='text' defaultValue={inputs.title} className='form-control' name="title" id='title'/>
               </div>
               <div className='form-group'>
-                  <label htmlFor='name'>Teacher's Name</label>
-                  <input defaultValue={inputs.name} className='form-control' name="name" id='name'></input>
+                  <label htmlFor='teacher_id'>Teacher's Name</label>
+                  {teach.length > 0 && (
+                  <select defaultValue={inputs.teacher_id} className='form-control' name="teacher_id" id='teacher_id'>
+                    <option value="">Select Teacher</option>
+                      {teach.map((d, key) =>
+                        <option key={d.id} value={d.id}>{d.tname}</option>
+                      )}
+                  </select>
+                  )}
               </div>
+              
               <div className='form-group'>
                   <label htmlFor='post'>Teacher's Post</label>
                   <input type="text" defaultValue={inputs.post} className='form-control' name="post" id='post'></input>

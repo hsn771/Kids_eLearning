@@ -48,10 +48,10 @@ function Classes() {
                                     <a className="d-block text-center h3 mt-3 mb-4" href="">{d.title}</a>
                                     <div className="d-flex align-items-center justify-content-between mb-4">
                                         <div className="d-flex align-items-center">
-                                            <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
+                                            <img className="rounded-circle flex-shrink-0" src={`${process.env.REACT_APP_API_URL}${d.timage}`} alt="" style={{width: '45px', height: '45px'}}/>
                                             <div className="ms-3">
-                                                <h6 className="text-primary mb-1">{d.name}</h6>
-                                                <small>{d.post}</small>
+                                                <h6 className="text-primary mb-1">{d.tname}</h6>
+                                                <small>{d.tpost}</small>
                                             </div>
                                         </div>
                                         <span className="bg-primary text-white rounded-pill py-2 px-3" href="">{d.price}</span>

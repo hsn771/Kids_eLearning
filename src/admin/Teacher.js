@@ -4,6 +4,7 @@ import Adminlayout from '../layout/Adminlayout';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+
 function Teacher() {
   const [list,setList]=useState([]);
   const [show, setShow] = useState(false);
@@ -94,7 +95,7 @@ function Teacher() {
   return (
     <Adminlayout>
       <div className='container'>
-        <h1>Categories</h1>
+        <h1>Teacher</h1>
         
         <Button variant="primary" onClick={handleShow}>
           Add New
@@ -115,7 +116,7 @@ function Teacher() {
               <td className="text-bold-500">{key+1}</td>
               <td>{d.tname}</td>
               <td>{d.tpost}</td>
-              <td>{d.timage}</td>
+              <td><img src={`${process.env.REACT_APP_API_URL}${d.timage}`} width="100px"/></td>
               <td>
                   <Button variant="primary" onClick={()=>{showEdit(d)}}>Edit</Button>
                   <Button variant="danger" onClick={()=>{deleteUser(d.id)}}>Delete</Button>
@@ -142,7 +143,7 @@ function Teacher() {
               </div>
               <div className='form-group'>
                   <label htmlFor='timage'>Photo</label>
-                  <input type='file' defaultValue={inputs.timage} className='form-control' name="timage" id='timage'/>
+                  <input type='file' onChange={handelFile} className='form-control' name="timage" id='timage'/>
               </div>
           </Modal.Body>
           <Modal.Footer>
