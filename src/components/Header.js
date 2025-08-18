@@ -1,6 +1,9 @@
 import React from "react";
 import {Link,useLocation} from 'react-router';
+import { useCart } from "react-use-cart";
+import { TiShoppingCart } from 'react-icons/ti';
 function Header() {
+    const { totalUniqueItems } = useCart();
     return(
         <>
         <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
@@ -29,6 +32,10 @@ function Header() {
                         </div>
                     </div>
                     <Link to={"/contact"} className="nav-item nav-link">Contact Us</Link>
+                    <Link to={'/cart'} className="nav-item nav-link">
+                        {totalUniqueItems} 
+                        <TiShoppingCart size={20} />Cart
+                      </Link>
                 </div>
                 <a href="" className="btn btn-primary rounded-pill px-3 d-none d-lg-block">Join Us<i className="fa fa-arrow-right ms-3"></i></a>
             </div>

@@ -13,7 +13,11 @@ import Login from './admin/Login';
 import Register from './admin/Register';
 import Dashboard from './admin/Dashboard';
 import Users from './admin/Users';
+import Coupon from "./admin/Coupon";
+import Orders from "./admin/Orders";
 
+import Cart from './pages/Cart';
+import Checkout from "./pages/Checkout";
 import Useradd from './admin/Useradd';
 import Protected from './admin/protected';
 import Categories from "./admin/Categories";
@@ -42,6 +46,8 @@ function App() {
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/cart' element={<Cart/>}/>
+          <Route path='/checkout' element={<Checkout/>}/>
 
           {/* Admin route */}
               <Route path= {"/admin/dashboard"} element={
@@ -67,6 +73,16 @@ function App() {
               <Route path= {"/admin/teacher"} element={
                 <Protected  isSignedIn= {isSignedIn} >
                   <Teacher /> 
+              </Protected>
+              } />
+              <Route path= {"/admin/coupon"} element={
+                <Protected  isSignedIn= {isSignedIn} >
+                  <Coupon /> 
+              </Protected>
+              } />
+               <Route path= {"/admin/orders"} element={
+                <Protected  isSignedIn= {isSignedIn} >
+                  <Orders /> 
               </Protected>
               } />
               <Route path="/admin/Useradd" element={<Protected isSignedIn= {isSignedIn} > <Useradd /> </Protected>} />

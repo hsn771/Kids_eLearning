@@ -1,0 +1,22 @@
+.checkout_btn_inner {
+  display: flex;
+  justify-content: flex-end; /* or space-between */
+  gap: 10px; /* spacing between buttons */
+  margin-top: 20px;
+}
+
+.gray_btn {
+  background: #ccc;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.main_btn {
+  background: #1c7eee;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
