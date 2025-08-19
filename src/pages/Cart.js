@@ -3,7 +3,7 @@ import Weblayout from "../layout/weblayout";
 import { useCart } from "react-use-cart";
 import { TiArrowUp, TiArrowDown } from 'react-icons/ti';
 import axios from "../admin/component/axios";
-import { Link,useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import "../assets/css/Cart.css";
 
 function Cart() {
@@ -69,7 +69,7 @@ function Cart() {
                         <img src={`${process.env.REACT_APP_API_URL}${d.image}`} alt="" width="100px" />
                       </div>
                       <div className="media-body">
-                        <p>{d.name}</p>
+                        <p>{d.title}</p>
                       </div>
                     </div>
                   </td>
@@ -82,7 +82,7 @@ function Cart() {
                         type="text"
                         name="qty"
                         id="sst"
-                        maxlength="12"
+                        maxLength="12"
                         value={d.quantity}
                         title="Quantity:"
                         className="input-text qty"
@@ -115,7 +115,7 @@ function Cart() {
                         <td>
                           <div className="cupon_text">
                             <input id="coupon_code" type="text" placeholder="Coupon Code" />
-                            <button onClick={checkCoupon} className="main_btn" >Apply</button>
+                            <button onClick={checkCoupon} className="main_btn" style={{margin:'5px'}} >Apply</button>
                           </div>
                         </td>
                       </tr>

@@ -33,46 +33,52 @@ function Login() {
         }
     }
   return (
-   <section style={{backgroundColor: "#eee"}}>
-  <div className="container h-100">
-    <div className="row d-flex justify-content-center align-items-center h-100">
-      <div className="col-lg-12 col-xl-11">
-        <div className="card text-black" style={{borderRadius: "25px"}}>
-          <div className="card-body p-md-5">
-            <div className="row justify-content-center">
-              <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign In</p>
-
-                <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div data-mdb-input-init className="form-outline flex-fill mb-0">
-                      <label className="form-label" htmlFor="email">Your Email</label>
-                      <input type="email" id="email" name="email" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div data-mdb-input-init className="form-outline flex-fill mb-0">
-                      <label className="form-label" htmlFor="password">Password</label>
-                      <input type="password" autocomplete="new-password" id="password" name="password" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">Login</button>
-                  </div>
-                </form>
-              </div>
-              <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  className="img-fluid" alt="Sample image"/>
-
-              </div>
-            </div>
+   <section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://storage.googleapis.com/bukas-website-v3-prd/website_v3/images/Bukas.ph_Choosing_Course_and_College.original.png"
+          class="img-fluid" alt="Phone image"/>
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form onSubmit={handleSubmit}>
+          
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="email" name="email" class="form-control form-control-lg" />
+            <label class="form-label" for="form1Example13">Email address</label>
           </div>
-        </div>
+
+         
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" id="password" name="password" class="form-control form-control-lg" />
+            <label class="form-label" for="form1Example23">Password</label>
+          </div>
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+              <label class="form-check-label" for="form1Example3"> Remember me </label>
+            </div>
+            <a href="#!">Forgot password?</a>
+          </div>
+
+         
+          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Sign in</button>
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
+
+          <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" style={{backgroundColor: "#3b5998"}} href="#!"
+            role="button">
+            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+          </a>
+          <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" style={{backgroundColor: "#55acee"}} href="#!"
+            role="button">
+            <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
+
+        </form>
       </div>
     </div>
   </div>

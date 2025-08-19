@@ -13,7 +13,7 @@ function Header(){
   }
     return(
           <>
-          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <nav className="navbar navbar-expand-sm bg-secondary navbar-dark">
               <div className="container-fluid">
                 <ul className="navbar-nav">
                   <li className="nav-item">
@@ -39,7 +39,9 @@ function Header(){
                   </li>
                   
                 </ul>
-                <button className="btn btn-link" onClick={logout}>Logout</button>
+                
+                  <button className="btn btn-link text-info text-decoration-none" onClick={logout}>Logout</button>
+               
               </div>
             </nav>
           </>
