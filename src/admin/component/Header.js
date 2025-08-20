@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link,useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import Appointment from './../Appointment';
 
 
 
@@ -36,6 +37,9 @@ function Header(){
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to={"/admin/orders"}>Orders</Link>
+                  </li>
+                   <li className="nav-item">
+                    <Link className="nav-link" to={"/admin/appointment"}>Appointment</Link>
                   </li>
                   
                 </ul>

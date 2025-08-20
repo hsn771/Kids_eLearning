@@ -1,8 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import HeaderCarousel from "./com/HeaderCarousel";
 import Weblayout from "../layout/weblayout";
+import axios from "../admin/component/axios";
+import { CartProvider, useCart } from "react-use-cart";
+import { TiShoppingCart } from 'react-icons/ti';
 
 function Home() {
+  const [courses,setCourses]=useState([]);
+     useEffect(() => {
+         getCourses();
+       }, []);
+     
+       const getCourses = async (e) => {
+         let res = await axios.get(`front_api/courses.php`)
+         setCourses(res.data);
+       }
+  
+       const { addItem } = useCart();
+    
+    
+          const handleSubmit = async(e) => {
+            e.preventDefault();
+           
+            let datas={
+              g_name:e.target.g_name.value,
+              g_email:e.target.g_email.value,
+              c_name:e.target.c_name.value,
+              c_age:e.target.c_age.value,
+              msg:e.target.msg.value
+            }
+           
+            try{
+              
+              let url='front_api/appointment.php';
+              
+              const formData = new FormData();
+                for (const property in datas) {
+                  formData.append(property, datas[property])
+                }
+                let response= await axios.post(url,formData);
+             
+                alert(response.data.message)
+            } 
+            catch(e){
+              console.log(e);
+            }
+          }
     return(
         <>
         <Weblayout>
@@ -147,248 +190,55 @@ function Home() {
                     <h1 className="mb-3">School classNamees</h1>
                     <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
                 </div>
-                <div className="row g-4">
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-1.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">Art & Drawing</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
+                 <div className="row g-4">
+                                    {courses.length > 0 && courses.map((d, key) =>
+                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                            <div className="classes-item">
+                                                <div className="bg-light rounded-circle w-75 mx-auto p-3">
+                                                    <img className="img-fluid rounded-circle" src={`${process.env.REACT_APP_API_URL}${d.image}`} alt=""/>
+                                                </div>
+                                                <div className="bg-light rounded p-4 pt-5 mt-n5">
+                                                    <a className="d-block text-center h3 mt-3 mb-4" href="">{d.title}</a>
+                                                    <div className="d-flex align-items-center justify-content-between mb-4">
+                                                        <div className="d-flex align-items-center">
+                                                            <img className="rounded-circle flex-shrink-0" src={`${process.env.REACT_APP_API_URL}${d.timage}`} alt="" style={{width: '45px', height: '45px'}}/>
+                                                            <div className="ms-3">
+                                                                <h6 className="text-primary mb-1">{d.tname}</h6>
+                                                                <small>{d.tpost}</small>
+                                                            </div>
+                                                        </div>
+                                                        <span className="bg-primary text-white rounded-pill py-2 px-3" href="">{d.price}</span>
+                                                    </div>
+                                                    <div className="row g-1">
+                                                        <div className="col-4">
+                                                            <div className="border-top border-3 border-primary pt-2">
+                                                                <h6 className="text-primary mb-1">Age:</h6>
+                                                                <small>{d.age}</small>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="border-top border-3 border-success pt-2">
+                                                                <h6 className="text-success mb-1">Time:</h6>
+                                                                <small>{d.time}</small>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-4">
+                                                            <div className="border-top border-3 border-warning pt-2">
+                                                                <h6 className="text-warning mb-1">Capacity:</h6>
+                                                                <small>{d.capacity}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row g-1">
+                                                        <button onClick={() => addItem(d)}>
+                                                           <TiShoppingCart size={20} /> Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
+                                   )}
                                 </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-2.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">Color Management</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
-                                        </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
-                                </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-3.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">Athletic & Dance</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
-                                        </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
-                                </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-4.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">Language & Speaking</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
-                                        </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
-                                </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-5.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">Religion & History</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
-                                        </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
-                                </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div className="classNamees-item">
-                            <div className="bg-light rounded-circle w-75 mx-auto p-3">
-                                <img className="img-fluid rounded-circle" src="assets/img/classNamees-6.jpg" alt=""/>
-                            </div>
-                            <div className="bg-light rounded p-4 pt-5 mt-n5">
-                                <a className="d-block text-center h3 mt-3 mb-4" href="">General Knowledge</a>
-                                <div className="d-flex align-items-center justify-content-between mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <img className="rounded-circle flex-shrink-0" src="assets/img/user.jpg" alt="" style={{width: '45px', height: '45px'}}/>
-                                        <div className="ms-3">
-                                            <h6 className="text-primary mb-1">Jhon Doe</h6>
-                                            <small>Teacher</small>
-                                        </div>
-                                    </div>
-                                    <span className="bg-primary text-white rounded-pill py-2 px-3" href="">$99</span>
-                                </div>
-                                <div className="row g-1">
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-primary pt-2">
-                                            <h6 className="text-primary mb-1">Age:</h6>
-                                            <small>3-5 Years</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-success pt-2">
-                                            <h6 className="text-success mb-1">Time:</h6>
-                                            <small>9-10 AM</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="border-top border-3 border-warning pt-2">
-                                            <h6 className="text-warning mb-1">Capacity:</h6>
-                                            <small>30 Kids</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -399,35 +249,35 @@ function Home() {
                         <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <div className="h-100 d-flex flex-column justify-content-center p-5">
                                 <h1 className="mb-4">Make Appointment</h1>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="row g-3">
                                         <div className="col-sm-6">
                                             <div className="form-floating">
-                                                <input type="text" className="form-control border-0" id="gname" placeholder="Gurdian Name"/>
+                                                <input type="text" className="form-control border-0" id="g_name" name="g_name" placeholder="Gurdian Name"/>
                                                 <label for="gname">Gurdian Name</label>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-floating">
-                                                <input type="email" className="form-control border-0" id="gmail" placeholder="Gurdian Email"/>
+                                                <input type="email" className="form-control border-0" id="g_email" name="g_email" placeholder="Gurdian Email"/>
                                                 <label for="gmail">Gurdian Email</label>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-floating">
-                                                <input type="text" className="form-control border-0" id="cname" placeholder="Child Name"/>
+                                                <input type="text" className="form-control border-0" id="c_name" name="c_name" placeholder="Child Name"/>
                                                 <label for="cname">Child Name</label>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-floating">
-                                                <input type="text" className="form-control border-0" id="cage" placeholder="Child Age"/>
+                                                <input type="text" className="form-control border-0" id="c_age" name="c_age" placeholder="Child Age"/>
                                                 <label for="cage">Child Age</label>
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-floating">
-                                                <textarea className="form-control border-0" placeholder="Leave a message here" id="message" style={{height: '100px'}}></textarea>
+                                                <textarea className="form-control border-0" placeholder="Leave a message here" id="msg" name="msg" style={{height: '100px'}}></textarea>
                                                 <label for="message">Message</label>
                                             </div>
                                         </div>

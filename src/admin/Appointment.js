@@ -70,7 +70,7 @@ function Appointment() {
   return (
     <Adminlayout>
       <div className='container'>
-        <h1>Orders</h1>
+        <h1>Appointment</h1>
         
         <table className='mt-5 table table-bordered'>
           <thead>
@@ -80,7 +80,7 @@ function Appointment() {
             <th>Guardian Email</th>
             <th>Child Name</th>
             <th>Child Age</th>
-            <th>message</th>
+            <th>Message</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -125,7 +125,7 @@ function Appointment() {
                   <input type='text' defaultValue={inputs.c_age} className='form-control' name="c_age" id='c_age'/>
               </div>
               <div className='form-group'>
-                  <label htmlFor='msg'>Child Age</label>
+                  <label htmlFor='msg'>Message</label>
                   <textarea defaultValue={inputs.msg} className='form-control' name="msg" id='msg'></textarea>
               </div>
           </Modal.Body>

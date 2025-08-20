@@ -15,6 +15,7 @@ import Dashboard from './admin/Dashboard';
 import Users from './admin/Users';
 import Coupon from "./admin/Coupon";
 import Orders from "./admin/Orders";
+import Appointment from "./admin/Appointment";
 
 import Cart from './pages/Cart';
 import Checkout from "./pages/Checkout";
@@ -83,6 +84,11 @@ function App() {
                <Route path= {"/admin/orders"} element={
                 <Protected  isSignedIn= {isSignedIn} >
                   <Orders /> 
+              </Protected>
+              } />
+               <Route path= {"/admin/appointment"} element={
+                <Protected  isSignedIn= {isSignedIn} >
+                  <Appointment /> 
               </Protected>
               } />
               <Route path="/admin/Useradd" element={<Protected isSignedIn= {isSignedIn} > <Useradd /> </Protected>} />

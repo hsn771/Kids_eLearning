@@ -102,6 +102,7 @@ function Checkout() {
                     className="form-control"
                     id="customer_contact"
                     name="customer_contact"
+                    placeholder="Phone number"
                   />
                   <span
                     className="placeholder"
@@ -114,6 +115,7 @@ function Checkout() {
                     className="form-control"
                     id="customer_email"
                     name="customer_email"
+                    placeholder="Email Address"
                   />
                   <span
                     className="placeholder"
@@ -127,6 +129,7 @@ function Checkout() {
                     className="form-control"
                     id="billing_address"
                     name="billing_address"
+                    placeholder="Address line 01"
                   />
                   <span
                     className="placeholder"
@@ -149,6 +152,7 @@ function Checkout() {
                     className="form-control"
                     id="shipping_address"
                     name="shipping_address"
+                    placeholder="Address line 02"
                   />
                   <span
                     className="placeholder"

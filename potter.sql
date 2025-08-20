@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2025 at 06:28 PM
+-- Generation Time: Aug 20, 2025 at 09:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,14 @@ CREATE TABLE `appointment` (
   `msg` varchar(255) DEFAULT NULL,
   `g_email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `g_name`, `c_name`, `c_age`, `msg`, `g_email`) VALUES
+(1, 'kaies', 'naeem', '15', 'fdbhdfbhd', 'kaies@gmail.com'),
+(3, 'kaies', 'naeem', '15', 'rthg', 'kaies@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -80,7 +88,7 @@ CREATE TABLE `coupon` (
 --
 
 INSERT INTO `coupon` (`id`, `name`, `code`, `amount`, `start_date`, `finish_date`) VALUES
-(1, 'kamal', 'RP20', 20.00, '2025-08-01', '2025-08-31');
+(1, 'Hasan', 'RS20', 20.00, '2025-08-01', '2025-08-31');
 
 -- --------------------------------------------------------
 
@@ -109,7 +117,9 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`id`, `category_id`, `title`, `price`, `capacity`, `image`, `created_at`, `updated_at`, `teacher_id`, `post`, `age`, `time`) VALUES
 (1, 1, 'Web Design & Development', 10000.00, '30', 'courses_file/1035931417web-design-concept-with-drawings.jpg', '2025-08-12 13:14:40', '2025-08-12 13:14:40', 5, 'It Consultant', '18-30 years', '10:00'),
-(2, 5, 'Religion & History', 3000.00, '30', 'courses_file/1453744377maxresdefault.jpg', '2025-08-19 14:37:03', '2025-08-19 14:37:03', 7, 'Religion Teacher', '6-15 years', '20:34');
+(2, 5, 'Religion & History', 3000.00, '30', 'courses_file/1332323395maxresdefault.jpg', '2025-08-19 14:37:03', '2025-08-19 14:37:03', 7, 'Religion Teacher', '6-15 years', '20:34'),
+(3, 2, 'Art & Drawing', 2000.00, '15', 'courses_file/1393865762Image-1-2.jpg', '2025-08-20 04:32:13', '2025-08-20 04:32:13', 6, 'Drawing Teacher', '5-12 years', '04:00'),
+(5, 3, 'Spoken English', 5000.00, '30', 'courses_file/1128862871How-to-Improve-your-spoken-English-1-1.jpg', '2025-08-20 04:40:14', '2025-08-20 04:40:14', 8, 'English Teacher', '5-12 years', '05:00');
 
 -- --------------------------------------------------------
 
@@ -142,8 +152,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `customer_name`, `customer_contact`, `customer_email`, `billing_address`, `billing_city`, `shipping_address`, `shipping_city`, `order_date`, `sub_total`, `discount`, `grand_total`, `delivery_date`, `order_status`, `cart_details`, `created_at`, `updated_at`) VALUES
-(1, 'Kaies', '0155', 'kaies@gmail.com', '2no gate', 2, 'motijil', 1, '2025-08-18', 10000.00, 2000.00, 8000.00, NULL, 0, '[{\"id\":\"1\",\"category_id\":\"1\",\"title\":\"Web Design & Development\",\"price\":\"10000.00\",\"capacity\":\"30\",\"image\":\"courses_file/1035931417web-design-concept-with-drawings.jpg\",\"created_at\":\"2025-08-12 19:14:40\",\"updated_at\":\"2025-08-12 19:14:40\",\"teacher_id\":\"5\",\"post\":\"It Consultant\",\"age\":\"18-30 years\",\"time\":\"10:00\",\"cat_name\":\"Web Design\",\"tname\":\"Kaies Hasan\",\"tpost\":\"It Consultant\",\"timage\":\"teacher_file/1618028115.jpeg\",\"quantity\":1,\"itemTotal\":10000}]', '2025-08-18 17:02:15', '2025-08-18 17:02:15'),
-(2, 'Ruhul', '0155', 'ruhul@gmail.com', '2no gate', 2, 'Khillgaon', 1, '2025-08-19', 3000.00, 600.00, 2400.00, NULL, 0, '[{\"id\":\"2\",\"category_id\":\"5\",\"title\":\"Religion & History\",\"price\":\"3000.00\",\"capacity\":\"30\",\"image\":\"courses_file/1453744377maxresdefault.jpg\",\"created_at\":\"2025-08-19 20:37:03\",\"updated_at\":\"2025-08-19 20:37:03\",\"teacher_id\":\"7\",\"post\":\"Religion Teacher\",\"age\":\"6-15 years\",\"time\":\"20:34\",\"cat_name\":\"Religion & History\",\"tname\":\"Tohidur Rahman\",\"tpost\":\"Religion Teacher\",\"timage\":\"teacher_file/16437162684ccd086a8b7970c7a1ab4961e9bfcafc.jpg\",\"quantity\":1,\"itemTotal\":3000}]', '2025-08-19 14:52:57', '2025-08-19 14:52:57');
+(1, 'Kaies', '0155', 'kaies@gmail.com', '2no gate', 2, 'motijil', 1, '2025-08-18', 10000.00, 2000.00, 8000.00, '2025-08-18', 2, '[{\"id\":\"1\",\"category_id\":\"1\",\"title\":\"Web Design & Development\",\"price\":\"10000.00\",\"capacity\":\"30\",\"image\":\"courses_file/1035931417web-design-concept-with-drawings.jpg\",\"created_at\":\"2025-08-12 19:14:40\",\"updated_at\":\"2025-08-12 19:14:40\",\"teacher_id\":\"5\",\"post\":\"It Consultant\",\"age\":\"18-30 years\",\"time\":\"10:00\",\"cat_name\":\"Web Design\",\"tname\":\"Kaies Hasan\",\"tpost\":\"It Consultant\",\"timage\":\"teacher_file/1618028115.jpeg\",\"quantity\":1,\"itemTotal\":10000}]', '2025-08-18 17:02:15', '2025-08-18 17:02:15'),
+(2, 'Ruhul', '0155', 'ruhul@gmail.com', '2no gate', 2, 'Khillgaon', 1, '2025-08-19', 3000.00, 600.00, 2400.00, '2025-08-19', 2, '[{\"id\":\"2\",\"category_id\":\"5\",\"title\":\"Religion & History\",\"price\":\"3000.00\",\"capacity\":\"30\",\"image\":\"courses_file/1453744377maxresdefault.jpg\",\"created_at\":\"2025-08-19 20:37:03\",\"updated_at\":\"2025-08-19 20:37:03\",\"teacher_id\":\"7\",\"post\":\"Religion Teacher\",\"age\":\"6-15 years\",\"time\":\"20:34\",\"cat_name\":\"Religion & History\",\"tname\":\"Tohidur Rahman\",\"tpost\":\"Religion Teacher\",\"timage\":\"teacher_file/16437162684ccd086a8b7970c7a1ab4961e9bfcafc.jpg\",\"quantity\":1,\"itemTotal\":3000}]', '2025-08-19 14:52:57', '2025-08-19 14:52:57'),
+(3, 'Naeem', '012', 'naeem@gmail.com', '2no gate', 2, 'Khillgaon', 1, '2025-08-20', 2000.00, 400.00, 1600.00, NULL, 0, '[{\"id\":\"3\",\"category_id\":\"2\",\"title\":\"Art & Drawing\",\"price\":\"2000.00\",\"capacity\":\"15\",\"image\":\"courses_file/1393865762Image-1-2.jpg\",\"created_at\":\"2025-08-20 10:32:13\",\"updated_at\":\"2025-08-20 10:32:13\",\"teacher_id\":\"6\",\"post\":\"Drawing Teacher\",\"age\":\"5-12 years\",\"time\":\"04:00\",\"cat_name\":\"Art & Drawing\",\"tname\":\"Akibur Rahman\",\"tpost\":\"Drawing Teacher\",\"timage\":\"teacher_file/1418759397_passport-photo-portrait-young-man-260nw-2437772333.webp\",\"quantity\":1,\"itemTotal\":2000}]', '2025-08-20 04:46:42', '2025-08-20 04:46:42'),
+(4, 'Naeem', '012', 'naeem@gmail.com', '2no gate', 2, 'Khillgaon', 1, '2025-08-20', 10000.00, 2000.00, 8000.00, NULL, 0, '[{\"id\":\"1\",\"category_id\":\"1\",\"title\":\"Web Design & Development\",\"price\":\"10000.00\",\"capacity\":\"30\",\"image\":\"courses_file/1035931417web-design-concept-with-drawings.jpg\",\"created_at\":\"2025-08-12 19:14:40\",\"updated_at\":\"2025-08-12 19:14:40\",\"teacher_id\":\"5\",\"post\":\"It Consultant\",\"age\":\"18-30 years\",\"time\":\"10:00\",\"cat_name\":\"Web Design\",\"tname\":\"Kaies Hasan\",\"tpost\":\"It Consultant\",\"timage\":\"teacher_file/1618028115.jpeg\",\"quantity\":1,\"itemTotal\":10000}]', '2025-08-20 07:52:26', '2025-08-20 07:52:26');
 
 -- --------------------------------------------------------
 
@@ -165,7 +177,8 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` (`id`, `tname`, `tpost`, `timage`) VALUES
 (5, 'Kaies Hasan', 'It Consultant', 'teacher_file/1618028115.jpeg'),
 (6, 'Akibur Rahman', 'Drawing Teacher', 'teacher_file/1418759397_passport-photo-portrait-young-man-260nw-2437772333.webp'),
-(7, 'Tohidur Rahman', 'Religion Teacher', 'teacher_file/16437162684ccd086a8b7970c7a1ab4961e9bfcafc.jpg');
+(7, 'Tohidur Rahman', 'Religion Teacher', 'teacher_file/16437162684ccd086a8b7970c7a1ab4961e9bfcafc.jpg'),
+(8, 'Khalilullah Tanvir', 'English Teacher', 'teacher_file/847812161_16337413461_9e83d5af7d_z.jpg');
 
 -- --------------------------------------------------------
 
@@ -191,7 +204,7 @@ INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, 
 (2, 'hasan', '0155678', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '98021754844428835939'),
 (3, 'Sidratul Mostafa Jesan', '0156', 'jesan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, NULL),
 (6, 'Tohidur Rahman', '125', 'tohid@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, NULL),
-(7, 'hasan', '015', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '16341755612968872286'),
+(7, 'hasan', '015', 'hasan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '86971755676457360625'),
 (8, 'Sidratul Mostafa Jesan', '015', 'jesan@gmail.com', '7b52009b64fd0a2a49e6d8a939753077792b0554', 1, '53511755094464115796');
 
 --
@@ -248,7 +261,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -266,19 +279,19 @@ ALTER TABLE `coupon`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
