@@ -2,7 +2,7 @@ import React from 'react';
 import { useCart } from "react-use-cart";
 import axios from "../admin/component/axios";
 import Weblayout from "../layout/weblayout";
-
+import { useNavigate } from "react-router-dom"; // <-- Import this
 
 function Checkout() {
    const {
@@ -11,47 +11,51 @@ function Checkout() {
       emptyCart,
       cartTotal,
       metadata 
-    } = useCart();
+   } = useCart();
 
-    
-    const saveCheckout=async (e) => {
+   const navigate = useNavigate(); 
+
+   const saveCheckout = async (e) => {
       e.preventDefault();
 
-      let datas={
-        customer_name:e.target.customer_name.value,
-        customer_contact:e.target.customer_contact.value,
-        customer_email:e.target.customer_email.value,
-        billing_address:e.target.billing_address.value,
-        billing_city:e.target.billing_city.value,
-        shipping_address:e.target.shipping_address.value,
-        shipping_city:e.target.shipping_city.value,
-        sub_total:cartTotal,
-        discount:metadata.discount ?? 0,
-        grand_total:(cartTotal - metadata.discount ?? 0),
-        cart_details:JSON.stringify(items)
-      }
+      let datas = {
+        customer_name: e.target.customer_name.value,
+        customer_contact: e.target.customer_contact.value,
+        customer_email: e.target.customer_email.value,
+        billing_address: e.target.billing_address.value,
+        billing_city: e.target.billing_city.value,
+        shipping_address: e.target.shipping_address.value,
+        shipping_city: e.target.shipping_city.value,
+        sub_total: cartTotal,
+        discount: metadata.discount ?? 0,
+        grand_total: cartTotal - (metadata.discount ?? 0),
+        cart_details: JSON.stringify(items)
+      };
+
       const formData = new FormData();
       for (const property in datas) {
         formData.append(property, datas[property])
       }
 
-      try{
-          let url=`front_api/checkout.php`
+      try {
+        let url = `front_api/checkout.php`;
+        let res = await axios.post(url, formData);
+
+        if (res.data.error === 1) {
+          alert(res.data.message);
+        } else {
+          emptyCart();
           
-          let res= await axios.post(url,formData);
-          // console.log(res);
-          // return false;
-          if(res.data.error == 1){
-            alert(res.data.message)
-          }else{
-            emptyCart();
-            window.location.href='/';
-          }
-        } 
-        catch(e){
-          console.log(e);
+          navigate(`/invoice/${res.data.order_id}`);
         }
-    }
+      } catch (e) {
+        console.log(e);
+      }
+   }
+
+   
+
+
 
     
     return(
