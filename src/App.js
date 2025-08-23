@@ -9,6 +9,7 @@ import Classes from "./pages/Classes";
 import Facilities from "./pages/Facilities";
 import Contact from "./pages/Contact";
 import Invoice from "./pages/Invoice";
+import ThankYou from "./pages/ThankYou";
 /* admin route */
 import Login from './admin/Login';
 import Register from './admin/Register';
@@ -51,6 +52,7 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
           <Route path="/invoice/:order_id" element={<Invoice />} />
+          <Route path="/thank-you/:order_id" element={<ThankYou />} />
 
           {/* Admin route */}
               <Route path= {"/admin/dashboard"} element={
