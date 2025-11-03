@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import axios from './component/axios'
 import {useNavigate} from 'react-router-dom';
 
 function Login() {
@@ -12,8 +12,7 @@ function Login() {
             password: e.target.password.value
         };
         try {
-            let url = 'http://localhost/potter-api/login.php';
-
+            let url = 'login';
             let response = await axios ({
                 method: 'post',
                 responsiveType: 'json',

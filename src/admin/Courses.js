@@ -38,16 +38,16 @@ function Courses() {
   }, []);
 
   const getDatas = async (e) => {
-    let res = await axios.get(`courses/list.php`)
+    let res = await axios.get(`courses`)
     setList(res.data);
   }
 
   const getCategories = async (e) => {
-      let res = await axios.get(`categories/list.php`)
+      let res = await axios.get(`categories`)
       setCat(res.data);
   }
   const getTeacher = async (e) => {
-      let res = await axios.get(`teacher/list.php`)
+      let res = await axios.get(`teacher`)
       setTeach(res.data);
   }
 

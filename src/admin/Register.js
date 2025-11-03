@@ -27,7 +27,7 @@ function Register() {
         }
 
         try{
-            let url='register.php';
+            let url='register';
 
      
             

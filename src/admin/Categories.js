@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from './component/axios';
+import axios from './component/axios'
 import Adminlayout from '../layout/Adminlayout';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -25,7 +25,7 @@ function Categories() {
   }, []);
 
   const getDatas = async (e) => {
-    let res = await axios.get(`categories/list.php`)
+    let res = await axios.get(`categories`)
     setList(res.data);
   }
 
@@ -46,9 +46,9 @@ function Categories() {
     try{
       let url='';
       if(datas.id!=''){
-        url=`categories/update.php`;
+        url=`categories`;
       }else{
-        url=`categories/add.php`;
+        url=`categories`;
       }
      
       let response= await axios.post(url,formData);
@@ -71,7 +71,7 @@ function Categories() {
   }
 
   const deleteUser = async(id) => {
-    let res = await axios.get(`categories/delete.php?id=${id}`);
+    let res = await axios.get(`categories?id=${id}`);
     getDatas();
   }
 
