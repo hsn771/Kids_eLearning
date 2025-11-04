@@ -29,7 +29,7 @@ function Teacher() {
   }, []);
 
   const getDatas = async (e) => {
-    let res = await axios.get(`teacher/list.php`)
+    let res = await axios.get(`teacher`)
     setList(res.data);
   }
 
@@ -62,9 +62,10 @@ function Teacher() {
     try{
       let url='';
       if(datas.id!=''){
-        url=`teacher/update.php`;
+        formData.append('_method', 'PUT');
+        url=`teacher/${datas.id}`;
       }else{
-        url=`teacher/add.php`;
+        url=`teacher`;
       }
      
       let response= await axios.post(url,formData);
@@ -116,7 +117,7 @@ function Teacher() {
               <td className="text-bold-500">{key+1}</td>
               <td>{d.tname}</td>
               <td>{d.tpost}</td>
-              <td><img src={`${process.env.REACT_APP_API_URL}${d.timage}`} width="100px"/></td>
+              <td><img src={`${process.env.REACT_APP_IMAGE_URL}${d.timage}`} width="100px"/></td>
               <td>
                   <Button variant="primary" onClick={()=>{showEdit(d)}}>Edit</Button>
                   <Button variant="danger" onClick={()=>{deleteUser(d.id)}}>Delete</Button>

@@ -29,7 +29,7 @@ function Users() {
   }, []);
 
   const getDatas = async (e) => {
-    let res = await axios.get(`users/list.php`)
+    let res = await axios.get(`users`)
     setUsers(res.data);
   }
 
@@ -59,9 +59,9 @@ function Users() {
     try{
       let url='';
       if(datas.id!=''){
-        url=`users/update.php`;
+        url=`users`;
       }else{
-        url=`users/add.php`;
+        url=`users`;
       }
      
       let response= await axios.post(url,formData);

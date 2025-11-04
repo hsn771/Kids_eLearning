@@ -46,7 +46,8 @@ function Categories() {
     try{
       let url='';
       if(datas.id!=''){
-        url=`categories`;
+        formData.append('_method', 'PUT');
+        url=`categories/${datas.id}`;
       }else{
         url=`categories`;
       }
