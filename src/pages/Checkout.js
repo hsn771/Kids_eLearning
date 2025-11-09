@@ -38,7 +38,7 @@ function Checkout() {
       }
 
       try {
-        let url = `front_api/checkout.php`;
+        let url = `orders`;
         let res = await axios.post(url, formData);
 
         if (res.data.error === 1) {

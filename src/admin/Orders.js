@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from "../admin/component/axios";
+import axios from './component/axios';
 import Adminlayout from '../layout/Adminlayout';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -18,7 +18,7 @@ function Orders() {
   }, []);
 
   const getDatas = async (e) => {
-    let res = await axios.get(`orders/list.php`)
+    let res = await axios.get(`orders`)
     
     setList(res.data);
   }
@@ -38,11 +38,12 @@ function Orders() {
     }
 
     try{
-      let url=`orders/update.php`;
+      formData.append('_method', 'PUT');
+      let url=`orders/${datas.id}`;
       
       let response= await axios.post(url,formData);
      
-      if(response.data.error == 1){
+      if(response.data.error === 1){
         alert(response.data.message)
       }else{
         getDatas();

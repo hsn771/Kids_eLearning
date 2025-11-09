@@ -84,9 +84,10 @@ function Courses() {
     try{
       let url='';
       if(datas.id!=''){
-        url=`courses/update.php`;
+        formData.append('_method', 'PUT');
+        url=`courses/${datas.id}`;
       }else{
-        url=`courses/add.php`;
+        url=`courses`;
       }
      
       let response= await axios.post(url,formData);
@@ -111,7 +112,7 @@ function Courses() {
   }
 
   const deleteUser = async(id) => {
-    let res = await axios.get(`courses/delete.php?id=${id}`);
+    let res = await axios.get(`courses?id=${id}`);
     getDatas();
   }
 
